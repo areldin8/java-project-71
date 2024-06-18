@@ -1,16 +1,13 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     id("java")
     application
-    id("checkstyle")
+    checkstyle
 }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
-application { mainClass.set("hexlet.code.App") }
+application { mainClass = "hexlet.code.App" }
 
 repositories {
     mavenCentral()
