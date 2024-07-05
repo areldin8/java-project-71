@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build-run
 
 setup:
-	./gradlew wrapper --gradle-version 8.5
+	./gradlew wrapper --gradle-version 8.7
 
 clean:
 	./gradlew clean
@@ -24,7 +24,7 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-lint:
+checkstyleMain:
 	./gradlew checkstyleMain
 
 check-deps:
