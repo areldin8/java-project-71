@@ -3,6 +3,7 @@ plugins {
     application
     checkstyle
     jacoco
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "hexlet.code"
@@ -19,8 +20,11 @@ dependencies {
     implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.4")
     implementation ("info.picocli:picocli:4.7.6")
     annotationProcessor ("info.picocli:picocli-codegen:4.7.6")
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(platform("org.junit:junit-bom:5.10.1"))
+    implementation("org.apache.commons:commons-lang3:3.14.0")
+    implementation("org.apache.commons:commons-collections4:4.4")
+
 }
 
 tasks.test {
