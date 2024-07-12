@@ -17,51 +17,81 @@ public class TestDiffer {
     }
 
     @Test
-    public void testStylish() throws Exception {
+    public void testStylish1() throws Exception {
         final String path1 = "./src/test/resources/files/file11.json";
         final String path2 = "./src/test/resources/files/file22.json";
-        String pathResult = "./src/test/resources/fixtures/resultStylish";
+        String pathResult = "./src/test/resources/fixtures/resultDefault";
         String generatedResult = Differ.generate(path1, path2, "stylish");
         var correctResult = getCorrectResultString(pathResult);
-        assertEquals(correctResult, generatedResult, "Stylish format test failed");
+        assertEquals(correctResult, generatedResult);
+    }
+
+    @Test
+    public void testStylish2() throws Exception {
+        final String path1 = "./src/test/resources/files/file11.yml";
+        final String path2 = "./src/test/resources/files/file22.yml";
+        String pathResult = "./src/test/resources/fixtures/resultDefault";
+        String generatedResult = Differ.generate(path1, path2, "stylish");
+        var correctResult = getCorrectResultString(pathResult);
+        assertEquals(correctResult, generatedResult);
     }
 
 
     @Test
-    public void testPlain() throws Exception {
+    public void testPlain1() throws Exception {
         final String path1 = "./src/test/resources/files/file11.yml";
         final String path2 = "./src/test/resources/files/file22.yml";
         String pathResult = "./src/test/resources/fixtures/resultPlain";
         String generatedResult = Differ.generate(path1, path2, "plain");
         var correctResult = getCorrectResultString(pathResult);
-        assertEquals(correctResult, generatedResult, "Plain format test failed");
+        assertEquals(correctResult, generatedResult);
     }
 
     @Test
-    public void testJson() throws Exception {
+    public void testPlain2() throws Exception {
+        final String path1 = "./src/test/resources/files/file11.json";
+        final String path2 = "./src/test/resources/files/file22.json";
+        String pathResult = "./src/test/resources/fixtures/resultPlain";
+        String generatedResult = Differ.generate(path1, path2, "plain");
+        var correctResult = getCorrectResultString(pathResult);
+        assertEquals(correctResult, generatedResult);
+    }
+
+    @Test
+    public void testJson1() throws Exception {
         final String path1 = "./src/test/resources/files/file11.yml";
         final String path2 = "./src/test/resources/files/file22.yml";
         String pathResult = "./src/test/resources/fixtures/resultJson";
         String generatedResult = Differ.generate(path1, path2, "json");
         var correctResult = getCorrectResultString(pathResult);
-        assertEquals(correctResult, generatedResult, "Json format test failed");
+        assertEquals(correctResult, generatedResult);
     }
 
     @Test
-    public void testCorrect() throws Exception {
-        final String path1 = "./src/test/resources/files/file1.json";
-        final String path2 = "./src/test/resources/files/file2.json";
-        String pathResult = "./src/test/resources/fixtures/resultCorrect";
+    public void testJson2() throws Exception {
+        final String path1 = "./src/test/resources/files/file11.json";
+        final String path2 = "./src/test/resources/files/file22.json";
+        String pathResult = "./src/test/resources/fixtures/resultJson";
+        String generatedResult = Differ.generate(path1, path2, "json");
+        var correctResult = getCorrectResultString(pathResult);
+        assertEquals(correctResult, generatedResult);
+    }
+
+    @Test
+    public void testDefault1() throws Exception {
+        final String path1 = "./src/test/resources/files/file11.yml";
+        final String path2 = "./src/test/resources/files/file22.yml";
+        String pathResult = "./src/test/resources/fixtures/resultDefault";
         String generatedResult = Differ.generate(path1, path2);
         var correctResult = getCorrectResultString(pathResult);
         assertEquals(correctResult, generatedResult);
     }
 
     @Test
-    public void testFunctional() throws Exception {
-        final String path1 = "./src/test/resources/files/file1.yml";
-        final String path2 = "./src/test/resources/files/file2.yml";
-        String pathResult = "./src/test/resources/fixtures/resultFunctional";
+    public void testDefault2() throws Exception {
+        final String path1 = "./src/test/resources/files/file11.json";
+        final String path2 = "./src/test/resources/files/file22.json";
+        String pathResult = "./src/test/resources/fixtures/resultDefault";
         String generatedResult = Differ.generate(path1, path2);
         var correctResult = getCorrectResultString(pathResult);
         assertEquals(correctResult, generatedResult);

@@ -9,8 +9,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class Parser {
     public static TreeMap<String, Object> parse(String fileData, String fileType) throws IOException {
-        ObjectMapper objectmapper = chooseFormat(fileType);
-        return objectmapper.readValue(fileData, new TypeReference<TreeMap<String, Object>>() { });
+        ObjectMapper objectMapper = chooseFormat(fileType);
+        return objectMapper.readValue(fileData, new TypeReference<>() {
+        });
     }
 
     private static ObjectMapper chooseFormat(String fileType) {
@@ -18,6 +19,7 @@ public class Parser {
             case "json":
                 return new ObjectMapper();
             case "yml":
+            case "yaml":
                 return new ObjectMapper(new YAMLFactory());
             default:
                 throw new IllegalArgumentException("Unsupported file type: " + fileType);

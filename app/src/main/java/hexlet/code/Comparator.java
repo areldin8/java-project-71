@@ -29,7 +29,7 @@ public class Comparator {
                 map.put("key", key);
                 map.put("newValue", map2.get(key));
                 map.put("status", STATUS_ADDED);
-            } else {
+            } else if (map1.containsKey(key) && map2.containsKey(key)) {
                 Object value1 = map1.get(key);
                 Object value2 = map2.get(key);
                 if (!Objects.equals(value1, value2)) {
