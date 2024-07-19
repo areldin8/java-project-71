@@ -9,8 +9,8 @@ import java.util.Map;
 public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
 
-        String data1 = getFile(filepath1);
-        String data2 = getFile(filepath2);
+        String data1 = readFile(filepath1);
+        String data2 = readFile(filepath2);
 
         String fileType1 = getFileType(filepath1);
         String fileType2 = getFileType(filepath2);
@@ -27,7 +27,7 @@ public class Differ {
         return generate(filepath1, filepath2, "stylish");
     }
 
-    public static String getFile(String filepath) throws Exception {
+    public static String readFile(String filepath) throws Exception {
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
         return Files.readString(path);
     }

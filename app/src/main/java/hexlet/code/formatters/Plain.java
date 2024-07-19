@@ -8,22 +8,16 @@ public class Plain {
     public static String casePlain(List<Map<String, Object>> differences) {
         StringBuilder result = new StringBuilder();
         for (Map<String, Object> diffs : differences) {
-            switch (diffs.get("status").toString()) {
-                case "removed" -> result.append("Property ").append("'")
-                        .append(diffs.get("key")).append("'").append(" was removed").append("\n");
-                case "added" -> result.append("Property ").append(complexValue(diffs.get("key")))
-                        .append(" was added with value: ")
-                        .append(complexValue(diffs.get("newValue")))
-                        .append("\n");
-                case "updated" -> result.append("Property ").append(complexValue(diffs.get("key")))
-                        .append(" was updated. From ")
-                        .append(complexValue(diffs.get("oldValue"))).append(" to ")
-                        .append(complexValue(diffs.get("newValue")))
-                        .append("\n");
-
+            String key = diffs.get("key").toString();
+            String status = diffs.get("status").toString();
+            switch (status) {
+                case constants.STATUS_REMOVED -> result.append(String.format("Property '%s' was removed%n", key));
+                case constants.STATUS_ADDED -> result.append(String.format("Property %s was added with value: %s%n",
+                        complexValue(key), complexValue(diffs.get("newValue"))));
+                case constants.STATUS_UPDATED -> result.append(String.format("Property %s was updated. From %s to %s%n",
+                        complexValue(key), complexValue(diffs.get("oldValue")), complexValue(diffs.get("newValue"))));
                 default -> result.append("");
             }
-
         }
         return result.toString().trim();
 

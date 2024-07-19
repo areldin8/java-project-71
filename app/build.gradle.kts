@@ -22,8 +22,10 @@ dependencies {
     annotationProcessor ("info.picocli:picocli-codegen:4.7.6")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.0.0-M4")
     implementation("org.apache.commons:commons-lang3:3.14.0")
     implementation("org.apache.commons:commons-collections4:4.4")
+    testImplementation("org.assertj:assertj-core:3.26.3")
 
 }
 
