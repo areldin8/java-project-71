@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestDiffer {
+public final class TestDiffer {
 
     private static String expectedStylish;
     private static String expectedPlain;
