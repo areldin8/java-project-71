@@ -32,12 +32,18 @@ public class TestDiffer {
 
     private static Stream<Arguments> provideTestArguments() {
         return Stream.of(
-                Arguments.of("./src/test/resources/files/file11.json", "./src/test/resources/files/file22.json", "stylish"),
-                Arguments.of("./src/test/resources/files/file11.yml", "./src/test/resources/files/file22.yml", "stylish"),
-                Arguments.of("./src/test/resources/files/file11.yml", "./src/test/resources/files/file22.yml", "plain"),
-                Arguments.of("./src/test/resources/files/file11.json", "./src/test/resources/files/file22.json", "plain"),
-                Arguments.of("./src/test/resources/files/file11.yml", "./src/test/resources/files/file22.yml", "json"),
-                Arguments.of("./src/test/resources/files/file11.json", "./src/test/resources/files/file22.json", "json")
+                Arguments.of("./src/test/resources/files/file11.json",
+                        "./src/test/resources/files/file22.json", "stylish"),
+                Arguments.of("./src/test/resources/files/file11.yml",
+                        "./src/test/resources/files/file22.yml", "stylish"),
+                Arguments.of("./src/test/resources/files/file11.yml",
+                        "./src/test/resources/files/file22.yml", "plain"),
+                Arguments.of("./src/test/resources/files/file11.json",
+                        "./src/test/resources/files/file22.json", "plain"),
+                Arguments.of("./src/test/resources/files/file11.yml",
+                        "./src/test/resources/files/file22.yml", "json"),
+                Arguments.of("./src/test/resources/files/file11.json",
+                        "./src/test/resources/files/file22.json", "json")
         );
     }
 

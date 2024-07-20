@@ -11,10 +11,13 @@ public class Plain {
             String key = diffs.get("key").toString();
             String status = diffs.get("status").toString();
             switch (status) {
-                case constants.STATUS_REMOVED -> result.append(String.format("Property '%s' was removed%n", key));
-                case constants.STATUS_ADDED -> result.append(String.format("Property %s was added with value: %s%n",
+                case ConstantsFormat.STATUS_REMOVED ->
+                        result.append(String.format("Property '%s' was removed%n", key));
+                case ConstantsFormat.STATUS_ADDED ->
+                        result.append(String.format("Property %s was added with value: %s%n",
                         complexValue(key), complexValue(diffs.get("newValue"))));
-                case constants.STATUS_UPDATED -> result.append(String.format("Property %s was updated. From %s to %s%n",
+                case ConstantsFormat.STATUS_UPDATED ->
+                        result.append(String.format("Property %s was updated. From %s to %s%n",
                         complexValue(key), complexValue(diffs.get("oldValue")), complexValue(diffs.get("newValue"))));
                 default -> result.append("");
             }

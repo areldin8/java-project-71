@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.formatters.constants;
+import hexlet.code.formatters.ConstantsFormat;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,20 +24,21 @@ public class Comparator {
             Object value1 = map1.get(key);
             Object value2 = map2.get(key);
 
-            if (value1 != null && value2 == null) {
-                map.put("oldValue", value1);
-                map.put("status", constants.STATUS_REMOVED);
-            } else if (value1 == null && value2 != null) {
-                map.put("newValue", value2);
-                map.put("status", constants.STATUS_ADDED);
-            } else {
+            if (map1.containsKey(key) && !map2.containsKey(key)) {
+                map.put("oldValue", map1.get(key));
+                map.put("status", ConstantsFormat.STATUS_REMOVED);
+            } else if (!map1.containsKey(key) && map2.containsKey(key)) {
+                map.put("newValue", map2.get(key));
+                map.put("status", ConstantsFormat.STATUS_ADDED);
+
+            } else if (map1.containsKey(key) && map2.containsKey(key)) {
                 if (!Objects.equals(value1, value2)) {
                     map.put("oldValue", value1);
                     map.put("newValue", value2);
-                    map.put("status", constants.STATUS_UPDATED);
+                    map.put("status", ConstantsFormat.STATUS_UPDATED);
                 } else {
                     map.put("oldValue", value1);
-                    map.put("status", constants.STATUS_UNCHANGED);
+                    map.put("status", ConstantsFormat.STATUS_UNCHANGED);
                 }
             }
             result.add(map);
@@ -45,5 +46,6 @@ public class Comparator {
         return result;
     }
 }
+
 
 
