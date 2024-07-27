@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.formatters.ConstantsFormat;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,7 +29,7 @@ public class Comparator {
                 map.put("newValue", map2.get(key));
                 map.put("status", ConstantsFormat.STATUS_ADDED);
 
-            } else if (map1.containsKey(key) && map2.containsKey(key)) {
+            } else {
                 if (!Objects.equals(value1, value2)) {
                     map.put("oldValue", value1);
                     map.put("newValue", value2);

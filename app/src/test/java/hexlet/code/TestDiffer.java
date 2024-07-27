@@ -2,13 +2,12 @@ package hexlet.code;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,47 +29,38 @@ public final class TestDiffer {
         return Files.readString(correctStringAbsolutePath).trim().replaceAll("\\r", "");
     }
 
-    private static Stream<Arguments> provideTestArguments() {
-        return Stream.of(
-                Arguments.of("./src/test/resources/files/file11.json",
-                        "./src/test/resources/files/file22.json", "stylish"),
-                Arguments.of("./src/test/resources/files/file11.yml",
-                        "./src/test/resources/files/file22.yml", "stylish"),
-                Arguments.of("./src/test/resources/files/file11.yml",
-                        "./src/test/resources/files/file22.yml", "plain"),
-                Arguments.of("./src/test/resources/files/file11.json",
-                        "./src/test/resources/files/file22.json", "plain"),
-                Arguments.of("./src/test/resources/files/file11.yml",
-                        "./src/test/resources/files/file22.yml", "json"),
-                Arguments.of("./src/test/resources/files/file11.json",
-                        "./src/test/resources/files/file22.json", "json")
-        );
-    }
-
-
     @ParameterizedTest
-    @MethodSource("provideTestArguments")
-    public void testDiffer(String path1, String path2, String format) throws Exception {
-        String generatedResult = Differ.generate(path1, path2, format);
-        String correctResult = switch (format) {
-            case "stylish" -> expectedStylish;
-            case "plain" -> expectedPlain;
-            case "json" -> expectedJson;
-            default -> throw new IllegalArgumentException("Unknown format: " + format);
-        };
-        assertEquals(correctResult, generatedResult);
-    }
-
-    private static Stream<Arguments> provideDefaultTestArguments() {
-        return Stream.of(
-                Arguments.of("./src/test/resources/files/file11.yml", "./src/test/resources/files/file22.yml"),
-                Arguments.of("./src/test/resources/files/file11.json", "./src/test/resources/files/file22.json")
-        );
+    @ValueSource(strings = {"yml", "json"})
+    public void testStylish(String fileType) throws Exception {
+        String path1 = Paths.get("./src/test/resources/files/file11." + fileType).toString();
+        String path2 = Paths.get("./src/test/resources/files/file22." + fileType).toString();
+        String generatedResult = Differ.generate(path1, path2, "stylish");
+        assertEquals(expectedStylish, generatedResult);
     }
 
     @ParameterizedTest
-    @MethodSource("provideDefaultTestArguments")
-    public void testDefault(String path1, String path2) throws Exception {
+    @ValueSource(strings = {"yml", "json"})
+    public void testPlain(String fileType) throws Exception {
+        String path1 = Paths.get("./src/test/resources/files/file11." + fileType).toString();
+        String path2 = Paths.get("./src/test/resources/files/file22." + fileType).toString();
+        String generatedResult = Differ.generate(path1, path2, "plain");
+        assertEquals(expectedPlain, generatedResult);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"yml", "json"})
+    public void testJson(String fileType) throws Exception {
+        String path1 = Paths.get("./src/test/resources/files/file11." + fileType).toString();
+        String path2 = Paths.get("./src/test/resources/files/file22." + fileType).toString();
+        String generatedResult = Differ.generate(path1, path2, "json");
+        assertEquals(expectedJson, generatedResult);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"yml", "json"})
+    public void testDefault(String fileType) throws Exception {
+        String path1 = Paths.get("./src/test/resources/files/file11." + fileType).toString();
+        String path2 = Paths.get("./src/test/resources/files/file22." + fileType).toString();
         String generatedResult = Differ.generate(path1, path2);
         assertEquals(expectedStylish, generatedResult);
     }

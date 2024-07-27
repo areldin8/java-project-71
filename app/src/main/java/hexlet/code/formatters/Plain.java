@@ -1,5 +1,7 @@
 package hexlet.code.formatters;
 
+import hexlet.code.ConstantsFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +29,12 @@ public class Plain {
     }
 
     public static String complexValue(Object data) {
-        if ((data instanceof Map) || (data instanceof ArrayList<?>)) {
+        if (data == null) {
+            return null;
+        } else if ((data instanceof Map) || (data instanceof ArrayList<?>)) {
             return "[complex value]";
         } else if (data instanceof String) {
             return "'" + data + "'";
-        } else if (data == null) {
-            return null;
         }
         return data.toString();
     }
