@@ -1,5 +1,6 @@
 package hexlet.code;
 
+
 public class ConstantsFormat {
     public static final String STATUS_REMOVED = "removed";
     public static final String STATUS_ADDED = "added";

@@ -23,27 +23,26 @@ public class Comparator {
             Object value2 = map2.get(key);
 
             if (map1.containsKey(key) && !map2.containsKey(key)) {
-                map.put("oldValue", map1.get(key));
+                map.put("oldValue", value1);
                 map.put("status", ConstantsFormat.STATUS_REMOVED);
             } else if (!map1.containsKey(key) && map2.containsKey(key)) {
-                map.put("newValue", map2.get(key));
+                map.put("newValue", value2);
                 map.put("status", ConstantsFormat.STATUS_ADDED);
-
+            } else if (!Objects.equals(value1, value2)) {
+                map.put("oldValue", value1);
+                map.put("newValue", value2);
+                map.put("status", ConstantsFormat.STATUS_UPDATED);
             } else {
-                if (!Objects.equals(value1, value2)) {
-                    map.put("oldValue", value1);
-                    map.put("newValue", value2);
-                    map.put("status", ConstantsFormat.STATUS_UPDATED);
-                } else {
-                    map.put("oldValue", value1);
-                    map.put("status", ConstantsFormat.STATUS_UNCHANGED);
-                }
+                map.put("oldValue", value1);
+                map.put("status", ConstantsFormat.STATUS_UNCHANGED);
             }
+
             result.add(map);
         }
         return result;
     }
 }
+
 
 
 
